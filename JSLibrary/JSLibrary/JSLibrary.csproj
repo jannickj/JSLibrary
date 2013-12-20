@@ -44,6 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Conversion\JSConversionTool.cs" />
+    <Compile Include="Conversion\JSConverter.cs" />
+    <Compile Include="Conversion\UnableToConvertException.cs" />
+    <Compile Include="Conversion\UnconvertableException.cs" />
+    <Compile Include="Conversion\JSConverterToForeign.cs" />
+    <Compile Include="Conversion\JSConverterToXmas.cs" />
     <Compile Include="Data\DictionaryList.cs" />
     <Compile Include="Data\GenericEvents\UnaryValueEvent.cs" />
     <Compile Include="Data\Grid.cs" />
@@ -57,6 +63,9 @@
     <Compile Include="IiLang\Exceptions\MissingXmlAttributeException.cs" />
     <Compile Include="IiLang\SingleParameter.cs" />
     <Compile Include="Network\PacketStream.cs" />
+    <Compile Include="Network\Server\ConnectedClient.cs" />
+    <Compile Include="Network\Server\MultiClientServer.cs" />
+    <Compile Include="Network\ServerFactory.cs" />
     <Compile Include="Parallel.cs" />
     <Compile Include="ParallelLib\ConcurrentQueue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
