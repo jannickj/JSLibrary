@@ -6,7 +6,7 @@ using System.Net.Sockets;
 
 namespace JSLibrary.Network.Server
 {
-    public class MultiClientServer
+    public abstract class MultiClientServer
     {
 
         private ServerFactory tFactory;
@@ -22,8 +22,11 @@ namespace JSLibrary.Network.Server
         public void Start()
         {
             TcpClient client = listener.AcceptTcpClient();
-            ConnectedClient cc = tFactory.CreateClientPoint(client);
+            ClientConnector cc = CreateConnector();
+            cc.Client = client;
             tFactory.CreateThread(cc.Start);
         }
+
+        public abstract ClientConnector CreateConnector();
     }
 }

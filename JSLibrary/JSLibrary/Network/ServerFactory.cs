@@ -15,10 +15,6 @@ namespace JSLibrary.Network
             return new Thread(new ParameterizedThreadStart(_ => start()));
         }
 
-        public ConnectedClient CreateClientPoint(TcpClient client)
-        {
-            return new ConnectedClient(client);
-        }
 
     }
 }
