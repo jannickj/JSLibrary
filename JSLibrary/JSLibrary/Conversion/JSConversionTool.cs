@@ -47,7 +47,7 @@ namespace JSLibrary.Conversion
 
             if (!(converter is JSConverterToForeign<KnownType, ForeignTyped>))
 				foreignLookup.Add(typeof (ForeignTyped), converter);
-            if (!(converter is JSConverterToXmas<KnownType, ForeignTyped>))
+            if (!(converter is JSConverterToKnown<KnownType, ForeignTyped>))
 				gooseLookup.Add(typeof (XmasType), converter);
 		}
 

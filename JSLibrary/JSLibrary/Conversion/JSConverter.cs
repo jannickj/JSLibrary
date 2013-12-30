@@ -16,10 +16,10 @@ namespace JSLibrary.Conversion
 	{
 		private JSConversionTool conversionTool;
 
-		internal JSConversionTool ConversionTool
+		protected internal JSConversionTool ConversionTool
 		{
-			private get { return conversionTool; }
-			set { conversionTool = value; }
+			get { return conversionTool; }
+			internal set { conversionTool = value; }
 		}
 
 
@@ -28,7 +28,7 @@ namespace JSLibrary.Conversion
 		/// </summary>
 		/// <param name="fobj">The foreign object to be converted</param>
 		/// <returns>The known object that the foreign object was converted into</returns>
-		public abstract KnownType BeginConversionToXmas(ForeignType fobj);
+		public abstract KnownType BeginConversionToKnown(ForeignType fobj);
 
 		/// <summary>
 		/// This method is called when the converter is asked by the converter tool to convert a Xmas object into a foreign object  
@@ -67,7 +67,7 @@ namespace JSLibrary.Conversion
 
 		internal override object BeginUnsafeConversionToXmas(object obj)
 		{
-			return BeginConversionToXmas((ForeignType) obj);
+			return BeginConversionToKnown((ForeignType) obj);
 		}
 	}
 }

@@ -49,7 +49,7 @@
     <Compile Include="Conversion\UnableToConvertException.cs" />
     <Compile Include="Conversion\UnconvertableException.cs" />
     <Compile Include="Conversion\JSConverterToForeign.cs" />
-    <Compile Include="Conversion\JSConverterToXmas.cs" />
+    <Compile Include="Conversion\JSConverterToKnown.cs" />
     <Compile Include="Data\DictionaryList.cs" />
     <Compile Include="Data\GenericEvents\UnaryValueEvent.cs" />
     <Compile Include="Data\Grid.cs" />
@@ -62,6 +62,9 @@
     <Compile Include="Generics.cs" />
     <Compile Include="IiLang\Exceptions\MissingXmlAttributeException.cs" />
     <Compile Include="IiLang\SingleParameter.cs" />
+    <Compile Include="Network\Data\JSMessage.cs" />
+    <Compile Include="Network\Data\JSPacket.cs" />
+    <Compile Include="Network\Data\MessageTool.cs" />
     <Compile Include="Network\PacketStream.cs" />
     <Compile Include="Network\Server\ClientConnector.cs" />
     <Compile Include="Network\Server\MultiClientServer.cs" />

@@ -9,7 +9,7 @@ namespace JSLibrary.Conversion
     public abstract class JSConverterToForeign<KnownType, ForeignType> : JSConverter<KnownType, ForeignType>
 
 	{
-        public override KnownType BeginConversionToXmas(ForeignType fobj)
+        public override KnownType BeginConversionToKnown(ForeignType fobj)
 		{
 			throw new UnableToConvertException(this);
 		}
