@@ -1,6 +1,7 @@
 using System;
 namespace JSLibrary.Data
 {
+    [Serializable]
 	public struct Point
 	{
 		private int x, y;
