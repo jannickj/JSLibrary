@@ -4,11 +4,12 @@ using System.Linq;
 
 namespace JSLibrary.Data
 {
-	public class DictionaryList<TKey, TValue>
+	public class DictionaryList<TKey, TValue> : IEnumerable<KeyValuePair<TKey, TValue[]>>
 	{
 		private Dictionary<TKey, HashSet<TValue>> dic = new Dictionary<TKey, HashSet<TValue>>();
 		public int TotalCount { get; private set; }
 		
+
 
 		public ICollection<TValue> this[TKey key]
 		{
@@ -92,5 +93,60 @@ namespace JSLibrary.Data
 			values = null;
 			return false;
 		}
+
+		public IEnumerator<KeyValuePair<TKey, TValue[]>> GetEnumerator()
+		{
+			DictionaryListEnumer<TKey, TValue> enumer;
+			lock (dic)
+			{
+				enumer = new DictionaryListEnumer<TKey, TValue>(this);
+			}
+
+			return enumer;
+		}
+
+
+		IEnumerator IEnumerable.GetEnumerator()
+		{
+			return this.GetEnumerator();
+		}
+
+		private class DictionaryListEnumer<TKey, TValue> : IEnumerator<KeyValuePair<TKey, TValue[]>>
+		{
+			private int cur = 0;
+			private KeyValuePair<TKey, TValue[]>[] data;
+
+			public DictionaryListEnumer(DictionaryList<TKey, TValue> list)
+			{
+				data = list.dic.Select(kv => new KeyValuePair<TKey, TValue[]>(kv.Key, kv.Value.ToArray())).ToArray();
+			}
+
+			public KeyValuePair<TKey, TValue[]> Current
+			{
+				get { return data[cur]; }
+			}
+
+			public void Dispose()
+			{
+				
+			}
+
+			object IEnumerator.Current
+			{
+				get { return this.Current; }
+			}
+
+			public bool MoveNext()
+			{
+				cur++;
+				return data.Length < cur;
+			}
+
+			public void Reset()
+			{
+				this.cur = 0;
+			}
+		}
+
 	}
 }
