@@ -7,7 +7,7 @@ namespace JSLibrary.Data
 	public class DictionaryList<TKey, TValue>
 	{
 		private Dictionary<TKey, HashSet<TValue>> dic = new Dictionary<TKey, HashSet<TValue>>();
-		private int TotalCount { get; private set; }
+		public int TotalCount { get; private set; }
 		
 
 		public ICollection<TValue> this[TKey key]
