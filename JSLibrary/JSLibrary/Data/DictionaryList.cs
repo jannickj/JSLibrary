@@ -7,6 +7,8 @@ namespace JSLibrary.Data
 	public class DictionaryList<TKey, TValue>
 	{
 		private Dictionary<TKey, HashSet<TValue>> dic = new Dictionary<TKey, HashSet<TValue>>();
+		private int TotalCount { get; private set; }
+		
 
 		public ICollection<TValue> this[TKey key]
 		{
@@ -35,13 +37,18 @@ namespace JSLibrary.Data
 		{
 			lock (dic)
 			{
+				
 				HashSet<TValue> vals;
 				if (!dic.TryGetValue(key, out vals))
 				{
 					vals = new HashSet<TValue>();
 					dic[key] = vals;
 				}
-				return vals.Add(val);
+				var added=  vals.Add(val);
+				if(added)
+					TotalCount++;
+				return added;
+
 			}
 		}
 
@@ -54,6 +61,7 @@ namespace JSLibrary.Data
 				{
 					if (vals.Remove(val))
 					{
+						TotalCount--;
 						if (vals.Count == 0)
 							dic.Remove(key);
 						return true;
