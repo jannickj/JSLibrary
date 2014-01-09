@@ -53,6 +53,7 @@
     <Compile Include="Data\DictionaryList.cs" />
     <Compile Include="Data\GenericEvents\UnaryValueEvent.cs" />
     <Compile Include="Data\Grid.cs" />
+    <Compile Include="Data\InvertedComparer.cs" />
     <Compile Include="Data\Point.cs" />
     <Compile Include="Data\Size.cs" />
     <Compile Include="Data\Vector.cs" />
