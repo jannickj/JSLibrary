@@ -113,7 +113,7 @@ namespace JSLibrary.Data
 
 		private class DictionaryListEnumer<TKey, TValue> : IEnumerator<KeyValuePair<TKey, TValue[]>>
 		{
-			private int cur = 0;
+			private int cur = -1;
 			private KeyValuePair<TKey, TValue[]>[] data;
 
 			public DictionaryListEnumer(DictionaryList<TKey, TValue> list)
@@ -139,12 +139,12 @@ namespace JSLibrary.Data
 			public bool MoveNext()
 			{
 				cur++;
-				return data.Length < cur;
+				return cur< data.Length;
 			}
 
 			public void Reset()
 			{
-				this.cur = 0;
+				this.cur = -1;
 			}
 		}
 
