@@ -3,6 +3,7 @@ using System.Linq;
 using System.Xml;
 using System.Xml.Serialization;
 using JSLibrary.IiLang.Exceptions;
+using System.Collections.Generic;
 
 namespace JSLibrary.IiLang.Parameters
 {
@@ -10,17 +11,18 @@ namespace JSLibrary.IiLang.Parameters
 	[XmlRoot("function")]
 	public class IilFunction : IilMultiParameter
 	{
-//		public List<Parameter> Parameters { get; private set; }
-
 		public IilFunction()
 		{
-//			Parameters = new List<Parameter> ();
 		}
 
 		public IilFunction(String name, params IilParameter[] ps) : base(ps)
 		{
 			Name = name;
-//			Parameters = new List<Parameter> (ps);
+		}
+
+		public IilFunction (IEnumerable<IilParameter> ps)
+			: base(ps.ToArray ())
+		{
 		}
 
 		public override string XmlTag

@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -16,6 +17,11 @@ namespace JSLibrary.IiLang.Parameters
 
 		public IilParameterList(params IilParameter[] ps)
 			: base(ps)
+		{
+		}
+
+		public IilParameterList (IEnumerable<IilParameter> ps)
+			: base(ps.ToArray ())
 		{
 		}
 
