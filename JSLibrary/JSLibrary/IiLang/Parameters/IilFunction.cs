@@ -20,9 +20,10 @@ namespace JSLibrary.IiLang.Parameters
 			Name = name;
 		}
 
-		public IilFunction (IEnumerable<IilParameter> ps)
+		public IilFunction (String name, IEnumerable<IilParameter> ps)
 			: base(ps.ToArray ())
 		{
+			Name = name;
 		}
 
 		public override string XmlTag
