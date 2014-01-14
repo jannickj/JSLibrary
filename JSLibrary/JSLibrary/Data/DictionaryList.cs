@@ -8,8 +8,16 @@ namespace JSLibrary.Data
 	{
 		private Dictionary<TKey, HashSet<TValue>> dic = new Dictionary<TKey, HashSet<TValue>>();
 		public int TotalCount { get; private set; }
-		
 
+
+		public void Clear()
+		{
+			lock (dic)
+			{
+				TotalCount = 0;
+				this.dic.Clear();
+			}
+		}
 
 		public ICollection<TValue> this[TKey key]
 		{
