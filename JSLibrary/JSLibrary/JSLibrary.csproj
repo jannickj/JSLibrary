@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Conversion\JSConversionIDFetcher.cs" />
     <Compile Include="Conversion\JSConversionTool.cs" />
     <Compile Include="Conversion\JSConverter.cs" />
     <Compile Include="Conversion\UnableToConvertException.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Network\Server\ClientConnector.cs" />
     <Compile Include="Network\Server\MultiClientServer.cs" />
     <Compile Include="Network\ServerFactory.cs" />
+    <Compile Include="Network\Server\StreamFilter.cs" />
     <Compile Include="Parallel.cs" />
     <Compile Include="ParallelLib\ConcurrentQueue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

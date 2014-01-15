@@ -22,6 +22,22 @@ namespace JSLibrary.Conversion
 	{
 		private Dictionary<Type, JSConverter> foreignLookup = new Dictionary<Type, JSConverter>();
 		private Dictionary<Type, JSConverter> gooseLookup = new Dictionary<Type, JSConverter>();
+		private JSConversionIDFetcher<KnownType> idOfKnown = new JSConversionIDFetcher<KnownType>();
+		private JSConversionIDFetcher<ForeignType> idOfForeign = new JSConversionIDFetcher<ForeignType>();
+
+		public JSConversionIDFetcher<ForeignType> IdOfForeign
+		{
+			get { return idOfForeign; }
+			set { idOfForeign = value; }
+		}
+
+		public JSConversionIDFetcher<KnownType> IdOfKnown
+		{
+			get { return idOfKnown; }
+			set { idOfKnown = value; }
+		}
+
+		
 
 		/// <summary>
 		/// Instantiates a XmasConversionTool, used to convert objects

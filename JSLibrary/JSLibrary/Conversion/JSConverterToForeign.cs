@@ -9,7 +9,16 @@ namespace JSLibrary.Conversion
     public abstract class JSConverterToForeign<KnownType, ForeignType> : JSConverter<KnownType, ForeignType>
 
 	{
-        public override KnownType BeginConversionToKnown(ForeignType fobj)
+
+		public sealed override bool CanConvertKnown
+		{
+			get
+			{
+				return false;
+			}
+		}
+
+        public sealed override KnownType BeginConversionToKnown(ForeignType fobj)
 		{
 			throw new UnableToConvertException(this);
 		}

@@ -9,7 +9,15 @@ namespace JSLibrary.Conversion
 	/// <typeparam name="ForeignType">The foreign type that is to be converted into a Xmas type</typeparam>
 	public abstract class JSConverterToKnown<KnownType, ForeignType> : JSConverter<KnownType, ForeignType>
 	{
-		public override ForeignType BeginConversionToForeign(KnownType gobj)
+		public sealed override bool CanConvertForeign
+		{
+			get
+			{
+				return false;
+			}
+		}
+
+		public sealed override ForeignType BeginConversionToForeign(KnownType gobj)
 		{
 			throw new UnableToConvertException(this);
 		}

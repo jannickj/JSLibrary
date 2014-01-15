@@ -3,6 +3,22 @@ namespace JSLibrary.Conversion
 {
 	public abstract class JSConverter
 	{
+		public virtual bool CanConvertForeign
+		{
+			get
+			{
+				return true;
+			}
+		}
+
+		public virtual bool CanConvertKnown
+		{
+			get
+			{
+				return true;
+			}
+		}
+
 		internal abstract object BeginUnsafeConversionToForeign(object gobj);
 		internal abstract object BeginUnsafeConversionToXmas(object obj);
 	}
