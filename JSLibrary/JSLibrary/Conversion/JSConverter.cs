@@ -3,7 +3,17 @@ namespace JSLibrary.Conversion
 {
 	public abstract class JSConverter
 	{
-		public virtual bool CanConvertForeign
+		public abstract object KnownID
+		{
+			get;
+		}
+
+		public abstract object ForeignID
+		{
+			get;
+		}
+
+		public virtual bool CanConvertToForeign
 		{
 			get
 			{
@@ -11,7 +21,7 @@ namespace JSLibrary.Conversion
 			}
 		}
 
-		public virtual bool CanConvertKnown
+		public virtual bool CanConvertToKnown
 		{
 			get
 			{
@@ -31,6 +41,16 @@ namespace JSLibrary.Conversion
 	public abstract class JSConverter<KnownType, ForeignType> : JSConverter
 	{
 		private JSConversionTool conversionTool;
+
+		public override object ForeignID
+		{
+			get { return typeof(ForeignType); }
+		}
+
+		public override object KnownID
+		{
+			get { return typeof(KnownType); }
+		}
 
 		protected internal JSConversionTool ConversionTool
 		{

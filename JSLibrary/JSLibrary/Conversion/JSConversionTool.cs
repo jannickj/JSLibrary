@@ -52,19 +52,19 @@ namespace JSLibrary.Conversion
 		/// <summary>
 		/// Adds a converter meant to be used by the converter for converting objects
 		/// </summary>
-		/// <typeparam name="XmasType">The Xmas type the converter will convert the foreign object to and from</typeparam>
+		/// <typeparam name="KnownType">The Xmas type the converter will convert the foreign object to and from</typeparam>
 		/// <typeparam name="ForeignTyped">The Foreign type the converter will convert the Xmas object to and from</typeparam>
 		/// <param name="converter">The converter that is added to the tool</param>
-		public virtual void AddConverter<XmasType, ForeignTyped>(JSConverter<XmasType, ForeignTyped> converter)
+		public virtual void AddConverter<KnownTyped, ForeignTyped>(JSConverter<KnownTyped, ForeignTyped> converter)
 			where ForeignTyped : ForeignType
-			where XmasType : KnownType
+			where KnownTyped : KnownType
 		{
 			converter.ConversionTool = this;
 
-            if (!(converter is JSConverterToForeign<KnownType, ForeignTyped>))
+            if (converter.CanConvertToKnown)
 				foreignLookup.Add(typeof (ForeignTyped), converter);
-            if (!(converter is JSConverterToKnown<KnownType, ForeignTyped>))
-				gooseLookup.Add(typeof (XmasType), converter);
+            if (converter.CanConvertToForeign)
+				gooseLookup.Add(typeof (KnownTyped), converter);
 		}
 
 		/// <summary>
@@ -112,7 +112,7 @@ namespace JSLibrary.Conversion
 
 		internal override object ConvertToKnownUnsafe(object fobj)
 		{
-			return ConvertToXmas((ForeignType) fobj);
+			return ConvertToKnown((ForeignType) fobj);
 		}
 
 		/// <summary>
@@ -121,7 +121,7 @@ namespace JSLibrary.Conversion
 		/// <param name="foreign">The foreign object to be converted</param>
 		/// <exception cref="UnconvertableException">Is thrown if conversion was not possible</exception>
 		/// <returns>The XmasObject the foreign object is converted into</returns>
-		public object ConvertToXmas(ForeignType foreign)
+		public KnownType ConvertToKnown(ForeignType foreign)
 		{
 			JSConverter converter;
 			try
@@ -129,7 +129,7 @@ namespace JSLibrary.Conversion
 				Type ft = foreign.GetType();
 				if (foreignLookup.TryGetValue(ft, out converter))
 				{
-					return converter.BeginUnsafeConversionToXmas(foreign);
+					return (KnownType) converter.BeginUnsafeConversionToXmas(foreign);
 				}
 				throw new KeyNotFoundException("Converter not found for "+foreign.GetType().Name);
 			}
@@ -144,6 +144,16 @@ namespace JSLibrary.Conversion
 
 		private class NoConverter : JSConverter
 		{
+			public override object ForeignID
+			{
+				get { return null; }
+			}
+
+			public override object KnownID
+			{
+				get { return null; }
+			}
+
 			internal override object BeginUnsafeConversionToForeign(object gobj)
 			{
 				throw new UnconvertableException(gobj);
@@ -159,6 +169,16 @@ namespace JSLibrary.Conversion
 		{
 			private Func<object, object> toForeign;
 			private Func<object, object> toXmas;
+
+			public override object ForeignID
+			{
+				get { return null; }
+			}
+
+			public override object KnownID
+			{
+				get { return null; }
+			}
 
 			public SleekConverter(Func<object, object> toForeign, Func<object, object> toXmas)
 			{
