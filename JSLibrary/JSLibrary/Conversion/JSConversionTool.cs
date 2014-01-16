@@ -20,8 +20,8 @@ namespace JSLibrary.Conversion
 	/// <typeparam name="ForeignType"></typeparam>
 	public class JSConversionTool<KnownType, ForeignType> : JSConversionTool
 	{
-		private Dictionary<Type, JSConverter> foreignLookup = new Dictionary<Type, JSConverter>();
-		private Dictionary<Type, JSConverter> gooseLookup = new Dictionary<Type, JSConverter>();
+        private Dictionary<object, JSConverter> foreignLookup = new Dictionary<object, JSConverter>();
+        private Dictionary<object, JSConverter> gooseLookup = new Dictionary<object, JSConverter>();
 		private JSConversionIDFetcher<KnownType> idOfKnown = new JSConversionIDFetcher<KnownType>();
 		private JSConversionIDFetcher<ForeignType> idOfForeign = new JSConversionIDFetcher<ForeignType>();
 
@@ -62,9 +62,9 @@ namespace JSLibrary.Conversion
 			converter.ConversionTool = this;
 
             if (converter.CanConvertToKnown)
-				foreignLookup.Add(typeof (ForeignTyped), converter);
+				foreignLookup.Add(converter.ForeignID, converter);
             if (converter.CanConvertToForeign)
-				gooseLookup.Add(typeof (KnownTyped), converter);
+				gooseLookup.Add(converter.KnownID, converter);
 		}
 
 		/// <summary>
@@ -76,26 +76,30 @@ namespace JSLibrary.Conversion
 
         public ForeignType ConvertToForeign(KnownType gobj)
 		{
-			Type original = gobj.GetType();
-			Type gt = original;
+            object original = this.idOfKnown.FetchID(gobj);
+			object gt = original;
 			JSConverter converter;
 			try
 			{
-				while (true)
-				{
-					if (gooseLookup.TryGetValue(gt, out converter))
-					{
-						if (gt != original)
-						{
-							SleekConverter sleek = new SleekConverter(converter.BeginUnsafeConversionToForeign,
-																	  converter.BeginUnsafeConversionToXmas);
-							gooseLookup.Add(original, sleek);
-						}
-						return (ForeignType)converter.BeginUnsafeConversionToForeign(gobj);
-					}
-					else
-						gt = gt.BaseType;
-				}
+
+                if (gooseLookup.TryGetValue(gt, out converter))
+                {
+                    //if (gt != original)
+                    //{
+                    //    SleekConverter sleek = new SleekConverter(converter.BeginUnsafeConversionToForeign,
+                    //                                                converter.BeginUnsafeConversionToXmas);
+                    //    gooseLookup.Add(original, sleek);
+                    //}
+                    return (ForeignType)converter.BeginUnsafeConversionToForeign(gobj);
+                }
+                else
+                    throw new KeyNotFoundException("Converter not found for " + gt.GetType().Name);
+                //while (true)
+                //{
+					
+                //    else
+                //        gt = gt.BaseType;
+                //}
 			}
 			catch (Exception inner)
 			{
@@ -126,7 +130,7 @@ namespace JSLibrary.Conversion
 			JSConverter converter;
 			try
 			{
-				Type ft = foreign.GetType();
+                object ft = idOfForeign.FetchID(foreign);
 				if (foreignLookup.TryGetValue(ft, out converter))
 				{
 					return (KnownType) converter.BeginUnsafeConversionToXmas(foreign);
@@ -152,7 +156,8 @@ namespace JSLibrary.Conversion
 			public override object KnownID
 			{
 				get { return null; }
-			}
+			}
+
 
 			internal override object BeginUnsafeConversionToForeign(object gobj)
 			{

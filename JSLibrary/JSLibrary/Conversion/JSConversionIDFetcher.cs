@@ -7,10 +7,25 @@ namespace JSLibrary.Conversion
 {
 	public class JSConversionIDFetcher<T>
 	{
-		public object FetchID(T obj)
+		public virtual object FetchID(T obj)
 		{
 			return obj.GetType();
 		}
 
 	}
+
+    public class JSConversionIDFetcherSimple<T> : JSConversionIDFetcher<T>
+    {
+        private Func<T, object> func;
+
+        public override object FetchID(T obj)
+        {
+            return func(obj);
+        }
+
+        public JSConversionIDFetcherSimple(Func<T, object> fetcher)
+        {
+            this.func = fetcher;
+        }
+    }
 }

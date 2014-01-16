@@ -62,6 +62,8 @@ namespace JSLibrary_Test.Conversion
 		}
 	}
 
+    
+
 	class Multiply10MockConverts : JSConverterToForeign<Tuple<string, int>, int>
 	{
 		public override object KnownID
