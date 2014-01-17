@@ -44,11 +44,53 @@ namespace JSLibrary
 			if (!completed)
 			{
 				thread.Abort();
-				throw new TimeoutException();
+				//throw new TimeoutException();
 			}
 			result = t;
 			return completed;
 		}
+         
+        public static bool TryExecute<TResult>(Func<TResult> func, double intervalMiliSec, Func<bool> ThreadAbortCondition, out TResult result)
+        {
+            TResult t = default(TResult);
+            var locker = new Object();
+            bool done = false;
+            bool success = false;
+            Thread thread = new Thread(() => t = func());
+            System.Timers.Timer timer = new System.Timers.Timer(intervalMiliSec);
+            Action<bool> aborter = completed =>
+                {
+                    lock (locker)
+                    {
+                        if (!done)
+                        {
+                            if (completed)
+                            {
+                                done = true;
+                                timer.Stop();
+                                success = true;
+                            }
+                            else if (ThreadAbortCondition())
+                            {
+                                timer.Stop();
+                                thread.Abort();
+                                done = true;
+                            }
+                        }
+                    }
+                };
+            
+            timer.Elapsed += delegate
+            {
+                aborter(false);
+            };
+            thread.Start();
+            timer.Start();
+            thread.Join();
+            aborter(true);
+            result = t;
+            return success;
+        }
 
         /// <summary>
         /// Executes an action, on set timer interval a condition must be satisfied or the execution of thread is halted
