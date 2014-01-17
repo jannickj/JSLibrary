@@ -85,6 +85,7 @@ namespace JSLibrary
                 aborter(false);
             };
             thread.Start();
+            timer.Start();
             thread.Join();
             aborter(true);
             result = t;
