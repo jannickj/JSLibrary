@@ -57,6 +57,7 @@
     <Compile Include="Data\InvertedComparer.cs" />
     <Compile Include="Data\Point.cs" />
     <Compile Include="Data\Size.cs" />
+    <Compile Include="Data\SortableList.cs" />
     <Compile Include="Data\Vector.cs" />
     <Compile Include="ExtendedConsole.cs" />
     <Compile Include="ExtendedString.cs" />
