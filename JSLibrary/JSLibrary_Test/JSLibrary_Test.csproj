@@ -42,7 +42,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AndTest.cs" />
+    <Compile Include="SortableListTest.cs" />
     <Compile Include="Conversion\ConversionToolTest.cs" />
     <Compile Include="Conversion\MockConverters.cs" />
     <Compile Include="Network\PacketStreamTest.cs" />

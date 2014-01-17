@@ -8,7 +8,7 @@ using JSLibrary.Data;
 namespace JSLibrary_Test
 {
     [TestFixture]
-    public class AndTest
+    public class SortableListTest
     {
         stuff s0, s1, s2, s3, s4;
         SortableList<stuff> sl;
