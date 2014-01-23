@@ -5,6 +5,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using JSLibrary;
+using JSLibrary.IiLang;
 using JSLibrary.IiLang.DataContainers;
 using JSLibrary.IiLang.Exceptions;
 using JSLibrary.IiLang.Parameters;
@@ -137,6 +138,28 @@ namespace JSLibrary_Test.IiLang
 				</action>");
 
 			Assert.Catch<Exception>(() => serializer.Deserialize(actual_src.CreateReader()));
+		}
+
+		[Test]
+		public void TryReadXmlRepresentationOfPerceptCollection_PerceptCollection()
+		{
+			XmlSerializer serializer = new XmlSerializer(typeof (IilPerceptCollection));
+
+			IilPerceptCollection expected = new IilPerceptCollection (new IilPercept ("test", new IilNumeral (2.0)));
+
+			XElement actual_src = XElement.Parse (
+				@"<perceptCollection>
+					<percept name=""test"">
+						<perceptParameter>
+							<number value=""2.0"" />
+						</perceptParameter>
+					</percept>
+				</perceptCollection>");
+			
+
+			IilPerceptCollection actual = (IilPerceptCollection) serializer.Deserialize(actual_src.CreateReader());
+
+			Assert.AreEqual (expected, actual);
 		}
 	}
 }

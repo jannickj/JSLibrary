@@ -38,7 +38,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="nunit.framework">
-      <HintPath>..\..\..\Downloads\NUnit-2.6.2\bin\nunit.framework.dll</HintPath>
+      <HintPath>..\..\..\nabf\TeamNabf\referenceddlls\nunit.framework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -52,7 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JSLibrary\JSLibrary.csproj">
-      <Project>{D1BFB5F5-681E-4D5F-9910-69403B11C5B5}</Project>
+      <Project>{02121C4A-B1FB-46B8-BDE8-C5C6CA28C036}</Project>
       <Name>JSLibrary</Name>
     </ProjectReference>
   </ItemGroup>

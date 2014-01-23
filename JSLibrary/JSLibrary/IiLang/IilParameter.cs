@@ -8,12 +8,6 @@ namespace JSLibrary.IiLang
 	public abstract class IilParameter : IilElement
 	{
 		private static Dictionary<string, Type> typeMap = new Dictionary<string, Type>();
-		//{
-		//    {"function", typeof(IILFunction)},
-		//    {"identifier", typeof(IILIdentifier)},
-		//    {"number", typeof(IILNumeral)},
-		//    {"parameterList", typeof(IILParameterList)}
-		//};
 
 		static IilParameter()
 		{
