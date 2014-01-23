@@ -73,6 +73,35 @@ namespace JSLibrary_Test.IiLang
 			Assert.AreEqual(expected, actual);
 		}
 
+        [Test]
+        public void ReadXmlRepresentationOfAction_emptyFunction_ReturnsCorrectMovetToActionObject()
+        {
+            IilAction expected = new IilAction("moveTo", new IilFunction("test"));
+
+
+
+
+            string xmldata = "<action name=\"moveTo\">\n" +
+                                "<actionParameter>\n" +
+                                    "<function name=\"test\"/>\n" +
+                                "</actionParameter>\n" +
+                            "</action>\n";
+
+
+
+            StreamReader sreader = new StreamReader(ExtendedString.ToStream(xmldata), Encoding.UTF8);
+            XmlReaderSettings rset = new XmlReaderSettings();
+            rset.ConformanceLevel = ConformanceLevel.Fragment;
+            XmlReader xreader = XmlReader.Create(sreader, rset);
+
+            //			XElement actual_src = XElement.Parse(
+            //				);
+
+            IilAction actual = (IilAction)new IilAction();
+            actual.ReadXml(xreader);
+            Assert.AreEqual(expected, actual);
+        }
+
 		[Test]
 		public void TryReadXmlOfFunctionWithoutName_ThrowException()
 		{

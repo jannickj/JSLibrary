@@ -37,21 +37,23 @@ namespace JSLibrary.IiLang
 
 		public override void ReadXml(XmlReader reader)
 		{
-			if (reader.IsEmptyElement)
-			{
-				reader.Read();
-			}
+            if (reader.IsEmptyElement)
+            {
+                reader.Read();
+            }
+            else
+            {
+                reader.ReadStartElement();
+                reader.MoveToContent();
 
-			reader.ReadStartElement();
-			reader.MoveToContent();
-
-			while (reader.MoveToContent() == XmlNodeType.Element)
-			{
-				IilParameter p = fromString(reader.LocalName);
-				p.ReadXml(reader);
-				parameters.Add(p);
-			}
-			reader.Read();
+                while (reader.MoveToContent() == XmlNodeType.Element)
+                {
+                    IilParameter p = fromString(reader.LocalName);
+                    p.ReadXml(reader);
+                    parameters.Add(p);
+                }
+                reader.Read();
+            }
 		}
 
 		public override void WriteXml(XmlWriter writer)
