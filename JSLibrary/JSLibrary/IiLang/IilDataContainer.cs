@@ -62,7 +62,8 @@ namespace JSLibrary.IiLang
 
 			if (reader.IsEmptyElement)
 			{
-				reader.ReadEndElement();
+				reader.Read ();
+//				reader.ReadEndElement();
 				return;
 			}
 

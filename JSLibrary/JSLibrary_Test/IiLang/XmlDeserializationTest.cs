@@ -141,6 +141,33 @@ namespace JSLibrary_Test.IiLang
 		}
 
 		[Test]
+		public void ReadXmlRepresentationOfActionWithoutContentInSingleElement_EmptyActionObject()
+		{
+			XmlSerializer serializer = new XmlSerializer(typeof (IilAction));
+			IilAction expected = new IilAction ("test");
+
+			XElement actual_src = XElement.Parse(
+				@"<action name = ""test"" />");
+
+			IilAction actual = (IilAction)serializer.Deserialize (actual_src.CreateReader ());
+			Assert.AreEqual (expected, actual);
+		}
+
+		[Test]
+		public void ReadXmlRepresentationOfActionWithoutContentInTwoElements_EmptyActionObject()
+		{
+			XmlSerializer serializer = new XmlSerializer(typeof (IilAction));
+			IilAction expected = new IilAction ("test");
+
+			XElement actual_src = XElement.Parse(
+				@"<action name = ""test"">
+				</action>");
+
+			IilAction actual = (IilAction)serializer.Deserialize (actual_src.CreateReader ());
+			Assert.AreEqual (expected, actual);
+		}
+
+		[Test]
 		public void TryReadXmlRepresentationOfPerceptCollection_PerceptCollection()
 		{
 			XmlSerializer serializer = new XmlSerializer(typeof (IilPerceptCollection));
@@ -155,7 +182,39 @@ namespace JSLibrary_Test.IiLang
 						</perceptParameter>
 					</percept>
 				</perceptCollection>");
-			
+
+
+			IilPerceptCollection actual = (IilPerceptCollection) serializer.Deserialize(actual_src.CreateReader());
+
+			Assert.AreEqual (expected, actual);
+		}
+
+		[Test]
+		public void TryReadXmlRepresentationOfPerceptCollectionWithSeveralPercepts_PerceptCollection()
+		{
+			XmlSerializer serializer = new XmlSerializer(typeof (IilPerceptCollection));
+
+			IilPerceptCollection expected = new IilPerceptCollection (
+				new IilPercept ("test", 
+					new IilNumeral (2.0)),
+				new IilPercept ("test2",
+					new IilIdentifier ("testid"))
+				);
+
+			XElement actual_src = XElement.Parse (
+				@"<perceptCollection>
+					<percept name=""test"">
+						<perceptParameter>
+							<number value=""2.0"" />
+						</perceptParameter>
+					</percept>
+					<percept name=""test2"">
+						<perceptParameter>
+							<identifier value=""testid"" />
+						</perceptParameter>
+					</percept>
+				</perceptCollection>");
+
 
 			IilPerceptCollection actual = (IilPerceptCollection) serializer.Deserialize(actual_src.CreateReader());
 
