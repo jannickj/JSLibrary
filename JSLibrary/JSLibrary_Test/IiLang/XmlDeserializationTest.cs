@@ -46,7 +46,7 @@ namespace JSLibrary_Test.IiLang
 		{
 			IilAction expected = new IilAction("moveTo", new IilNumeral(2), new IilNumeral(3));
 
-			XmlSerializer serializer = new XmlSerializer(typeof (IilAction));
+			
 
 
 			string xmldata = "<action name=\"moveTo\">\n"+
@@ -67,9 +67,9 @@ namespace JSLibrary_Test.IiLang
 
 //			XElement actual_src = XElement.Parse(
 //				);
-			
 
-			IilAction actual = (IilAction) serializer.Deserialize(xreader);
+            IilAction actual = (IilAction)new IilAction();
+            actual.ReadXml(xreader);
 			Assert.AreEqual(expected, actual);
 		}
 

@@ -40,8 +40,6 @@ namespace JSLibrary.IiLang.DataContainers
         public override void ReadXml(System.Xml.XmlReader reader)
         {
             base.ReadXml(reader);
-            if (!reader.IsStartElement())
-                reader.ReadEndElement();
         }
 	}
 }
