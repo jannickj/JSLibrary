@@ -29,5 +29,19 @@ namespace JSLibrary.IiLang.DataContainers
 		{
 			get { return "actionParameter"; }
 		}
+
+        public override void WriteXml(System.Xml.XmlWriter writer)
+        {
+            writer.WriteStartElement(XmlTag);
+            base.WriteXml(writer);
+            writer.WriteEndElement();
+        }
+
+        public override void ReadXml(System.Xml.XmlReader reader)
+        {
+            base.ReadXml(reader);
+            if (!reader.IsStartElement())
+                reader.ReadEndElement();
+        }
 	}
 }
