@@ -37,6 +37,7 @@ namespace JSLibrary.IiLang
 
 		public override void ReadXml(XmlReader reader)
 		{
+            reader.MoveToContent();
 			if (reader.IsEmptyElement)
 			{
 				reader.Read();
