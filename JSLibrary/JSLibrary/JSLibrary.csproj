@@ -88,6 +88,8 @@
     <Compile Include="IiLang\Parameters\IilNumeral.cs" />
     <Compile Include="IiLang\Parameters\IilParameterList.cs" />
     <Compile Include="SelectableLinkedList.cs" />
+    <Compile Include="Logging\DebugLevel.cs" />
+    <Compile Include="Logging\Logger.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -97,4 +99,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <Folder Include="Logging\" />
+  </ItemGroup>
 </Project>
