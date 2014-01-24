@@ -55,13 +55,14 @@ namespace JSLibrary.IiLang
 
 		public override void WriteXml(XmlWriter writer)
 		{
-			
+            writer.WriteStartElement(XmlTag);
 			foreach (IilPercept p in percepts)
 			{
 				writer.WriteStartElement("percept");
 				p.WriteXml(writer);
 				writer.WriteEndElement();
 			}
+            writer.WriteEndElement();
 		}
 
 		public override bool Equals (object obj)
