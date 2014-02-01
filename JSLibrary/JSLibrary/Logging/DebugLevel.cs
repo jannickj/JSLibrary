@@ -8,6 +8,7 @@ namespace JSLibrary.Logging
 		Critical,
 		Error,
 		Warning,
+        Important,
 		Info,
 		All
 	};
