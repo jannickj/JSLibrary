@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSLibrary", "JSLibrary\JSLi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSLibrary_Test", "JSLibrary_Test\JSLibrary_Test.csproj", "{2204BADC-EF3F-43BA-945F-B104DE20F64B}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "JSLibraryFunctional", "JSLibraryFunctional\JSLibraryFunctional.fsproj", "{083C914F-CD68-4A9C-9E8B-CD7908E64149}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{2204BADC-EF3F-43BA-945F-B104DE20F64B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2204BADC-EF3F-43BA-945F-B104DE20F64B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2204BADC-EF3F-43BA-945F-B104DE20F64B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{083C914F-CD68-4A9C-9E8B-CD7908E64149}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{083C914F-CD68-4A9C-9E8B-CD7908E64149}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{083C914F-CD68-4A9C-9E8B-CD7908E64149}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{083C914F-CD68-4A9C-9E8B-CD7908E64149}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
