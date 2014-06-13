@@ -1,4 +1,5 @@
 ﻿
+using System;
 namespace JSLibrary.Conversion
 {
 	public abstract class JSConverter
@@ -82,7 +83,14 @@ namespace JSLibrary.Conversion
 		/// <returns>The object the Known was converted into</returns>
 		protected object ConvertToForeign(object gobj)
 		{
-			return conversionTool.ConvertToForeignUnsafe(gobj);
+            try
+            {
+                return conversionTool.ConvertToForeignUnsafe(gobj);
+            }
+            catch (Exception e)
+            {
+                throw new UnableToConvertException(this, e);
+            }
 		}
 
 		/// <summary>
@@ -93,7 +101,14 @@ namespace JSLibrary.Conversion
 		/// <returns>The XmasObject the object was converted into</returns>
 		protected object ConvertToXmas(ForeignType fobj)
 		{
-			return conversionTool.ConvertToKnownUnsafe(fobj);
+            try
+            {
+                return conversionTool.ConvertToKnownUnsafe(fobj);
+            }
+            catch (Exception e)
+            {
+                throw new UnableToConvertException(this, e);
+            }
 		}
 
 		internal override object BeginUnsafeConversionToForeign(object gobj)
