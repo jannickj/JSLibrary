@@ -55,6 +55,7 @@
     <Compile Include="Data\GenericEvents\UnaryValueEvent.cs" />
     <Compile Include="Data\Grid.cs" />
     <Compile Include="Data\InvertedComparer.cs" />
+    <Compile Include="Data\KeyValuePairComparers.cs" />
     <Compile Include="Data\Point.cs" />
     <Compile Include="Data\Size.cs" />
     <Compile Include="Data\SortableList.cs" />
@@ -99,7 +100,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup>
-    <Folder Include="Logging\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>

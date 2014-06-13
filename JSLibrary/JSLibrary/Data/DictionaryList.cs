@@ -80,6 +80,14 @@ namespace JSLibrary.Data
 			}
 		}
 
+        public bool RemoveKeyAndValues(TKey key)
+        {
+            lock (dic)
+            {
+                return dic.Remove(key);
+            }
+        }
+
 		public ICollection<TKey> Keys
 		{
 			get { return this.dic.Keys.ToArray(); }
