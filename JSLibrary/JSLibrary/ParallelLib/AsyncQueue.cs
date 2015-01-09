@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Bitpact.Main.Tools
 {
-	public sealed class AsyncQueue<T>
+	public sealed class AsyncQueue<T> : IAsyncQueue<T>
 	{
 		private Queue<T> queue = new Queue<T>();
 		private SemaphoreSlim sim = new SemaphoreSlim(1,1);

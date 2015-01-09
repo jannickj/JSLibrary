@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace JSLibrary.Data
 {
@@ -19,7 +20,7 @@ namespace JSLibrary.Data
 			}
 		}
 
-		public ICollection<TValue> this[TKey key]
+		public TValue[] this[TKey key]
 		{
 			get
 			{
@@ -34,7 +35,7 @@ namespace JSLibrary.Data
 			}
 		}
 
-		public ICollection<TValue> Get(TKey key)
+		public TValue[] Get(TKey key)
 		{
 			lock (dic)
 			{
@@ -88,9 +89,13 @@ namespace JSLibrary.Data
             }
         }
 
-		public ICollection<TKey> Keys
+		public TKey[] Keys
 		{
-			get { return this.dic.Keys.ToArray(); }
+			get { 
+				lock (dic) {
+					return this.dic.Keys.ToArray ();
+				}
+			}
 		}
 
 
@@ -98,7 +103,7 @@ namespace JSLibrary.Data
 
 
 
-		public bool TryGetValues(TKey key, out ICollection<TValue> values)
+		public bool TryGetValues(TKey key, out TValue[] values)
 		{
 			HashSet<TValue> vals;
 			if (this.dic.TryGetValue(key, out vals))
@@ -125,6 +130,13 @@ namespace JSLibrary.Data
 		IEnumerator IEnumerable.GetEnumerator()
 		{
 			return this.GetEnumerator();
+		}
+
+		public Tuple<TKey, TValue[]>[] ToArray()
+		{
+			lock (dic) {
+				return this.dic.Select((kv,index) => Tuple.Create(kv.Key,kv.Value.ToArray())).ToArray();
+			}
 		}
 
 		private class DictionaryListEnumer<TKey, TValue> : IEnumerator<KeyValuePair<TKey, TValue[]>>
