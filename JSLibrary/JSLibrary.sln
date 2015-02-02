@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSLibrary", "JSLibrary\JSLibrary.csproj", "{02121C4A-B1FB-46B8-BDE8-C5C6CA28C036}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSLibrary_Test", "JSLibrary_Test\JSLibrary_Test.csproj", "{2204BADC-EF3F-43BA-945F-B104DE20F64B}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "JSLibraryFSharp", "JSLibraryFSharp\JSLibraryFSharp.fsproj", "{BAECD1A4-2058-457D-8DB3-14E63C7652FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +23,10 @@ Global
 		{2204BADC-EF3F-43BA-945F-B104DE20F64B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2204BADC-EF3F-43BA-945F-B104DE20F64B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2204BADC-EF3F-43BA-945F-B104DE20F64B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAECD1A4-2058-457D-8DB3-14E63C7652FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAECD1A4-2058-457D-8DB3-14E63C7652FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAECD1A4-2058-457D-8DB3-14E63C7652FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAECD1A4-2058-457D-8DB3-14E63C7652FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
