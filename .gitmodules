@@ -1,0 +1,3 @@
+[submodule "fsharpx"]
+	path = fsharpx
+	url = https://jannickj@github.com/jannickj/fsharpx.git
