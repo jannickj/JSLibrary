@@ -6,6 +6,6 @@ open FSharpx.Functional.IO
 module Time =
 
 
-    let getCurrentTime = io {
+    let getCurrentTime = async {
         return DateTime.Now
         }

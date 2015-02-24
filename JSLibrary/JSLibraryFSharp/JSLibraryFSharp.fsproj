@@ -41,6 +41,7 @@
     <Compile Include="Integer.fs" />
     <Compile Include="State.fs" />
     <Compile Include="Regex.fs" />
+    <Compile Include="Console.fs" />
     <Compile Include="Time.fs" />
     <Compile Include="Logger.fs" />
   </ItemGroup>

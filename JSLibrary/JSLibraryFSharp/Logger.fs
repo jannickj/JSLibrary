@@ -1,8 +1,8 @@
 ﻿namespace JSLibraryFSharp.IO
 open System
 open FSharpx.Functional.Operators
-open FSharpx.Functional.IO
 open Time
+open Console
 
 module Logger =
     type Level  = None = 0
@@ -13,7 +13,7 @@ module Logger =
                 | Info = 5
                 | All = 6
 
-    let log (level:Level) (curLevel:Level) (msg:string) = io {
+    let log (level:Level) (curLevel:Level) (msg:string) = async {
         if curLevel >= level then
             let! time = getCurrentTime
             let timeStamp = time.ToString("[dd/MM-yyyy HH:mm:ss]")
